@@ -50,20 +50,20 @@
 
             <div class="album py-5 bg-light">
                 <div class="container">
-                        <form>
+                        <form  method="POST" action="cadastro.php">
                                 <div class="form-group">
                                   <label for="titulo">Título</label>
-                                  <input type="text" class="form-control" id="titulo">
+                                  <input type="text" class="form-control" name="titulo">
                                 </div>
                                 <div class="form-group">
                                   <label for="url">URL</label>
-                                  <input class="form-control" id="url" type="text">
+                                  <input class="form-control" name="urlimg" type="text">
                                 </div>
                                 <div class="form-group">
                                   <label for="receita">Receita</label>
-                                  <textarea class="form-control" id="receita" rows="8"></textarea>
+                                  <textarea class="form-control" name="receita" rows="8"></textarea>
                                 </div>
-                                <button type="button" class="btn btn-primary" style="width: 100%">Salvar Receita</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%">Salvar Receita</button>
                               </form>
                 </div>
             </div>
