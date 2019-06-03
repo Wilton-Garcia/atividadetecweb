@@ -4,7 +4,7 @@
      /*Escolhe o banco de dados a ser conectado*/
      $db = mysqli_select_db($connect,'receitasweb');
       /*Insere dados na tabela de receitas*/
-    $query = "SELECT TITULO,URLIMG,RECEITA,VOTOS FROM RECEITAS";
+    $query = "SELECT CODIGO,TITULO,URLIMG,RECEITA,VOTOS FROM RECEITAS";
     $dados = mysqli_query($connect,$query) or die(mysqli_error($connect));
     $linha = mysqli_fetch_assoc($dados);
     // calcula quantos dados retornaram
@@ -55,43 +55,43 @@
                     <p class="lead text-muted">Trabalho desenvolvido para a aual de Tec Web</p>
                     <p>
                         <a href="#" class="btn btn-primary my-2">Receitas</a>
-                        <a href="#" class="btn btn-secondary my-2">Cadastrar Receita</a>
+                        <a href="cadastro.php" class="btn btn-secondary my-2">Cadastrar Receita</a>
                     </p>
                 </div>
             </section>
 
             <div class="album py-5 bg-light">
                 <div class="container">
-                    <div class="row">
-                        
+                    <div class="row">      
                             <?php
                             if($total > 0) {
                                 // inicia o loop que vai mostrar todos os dados
                                 do {
                                     echo '<div class="col-md-4">
-                                    <div class="card mb-4 shadow-sm">
-                                                    <img src="'.$linha['URLIMG'].'" width="100%" height="225">
-                                                        <div class="card-body">
-                                                            <p class="card-text">
-                                                                <h3>'.$linha['TITULO'].'</h3>
-                                                                <br/>
-                                                                <p>'.$linha['VOTOS'].' Vezes favoritada</p>
-                                                                <div class="d-flex justify-content-between align-items-center">
-                                                                    <div class="btn-group">
-                                                                        <button type="button" class="btn btn-sm btn-outline-secondary alig">Favoritar Receitas</button>
-                                                                        <button type="button" class="btn btn-sm btn-outline-secondary alig">Abrir Receitas</button>
-                                                                    </div>
-                                                                    <!-- <small class="text-muted">9 mins</small>-->
+                                            <div class="card mb-4 shadow-sm">
+                                                <img src="'.$linha['URLIMG'].'" width="100%" height="225">
+                                                    <div class="card-body">
+                                                        <p class="card-text">
+                                                            <h3>'.$linha['TITULO'].'</h3>
+                                                            <br/>
+                                                        <p>'.$linha['VOTOS'].' Vezes favoritada</p>
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary alig">Favoritar Receitas</button>
+                                                                    <form method="get" action="receita.php">
+                                                                    <button name="codigo" id="codigo" type="submit" class="btn btn-sm btn-outline-secondary alig" value="'.$linha['CODIGO'].' ">Abrir Receitas</button>
+                                                                </form>
                                                                 </div>
+                                                                    <!-- <small class="text-muted">9 mins</small>-->
                                                             </div>
-                                    </div>
-                                </div>';
+                                                    </div>
+                                                </div>
+                                            </div>';
                                 // finaliza o loop que vai mostrar os dados
                                 }while($linha = mysqli_fetch_assoc($dados));
                             // fim do if 
                             }
-                            ?>
-                    <!--</div>-->
+                        ?>
                 </div>
             </div>
         </div>

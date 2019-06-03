@@ -1,11 +1,11 @@
 <?php
-    $codigo = $_GET['codigo']
+    $codigo = $_GET['codigo'];
     $connect = mysqli_connect('localhost','root');
     /*Escolhe o banco de dados a ser conectado*/
     $db = mysqli_select_db($connect,'receitasweb');
      /*Insere dados na tabela de receitas*/
-   $query = "SELECT TITULO,URLIMG,RECEITA,VOTOS FROM RECEITAS WHERE CODIGO = ".$Scodigo;
-   $linha=mysqli_fetch_array(mysql_query($connect,$query));
+   $query = "SELECT TITULO,URLIMG,RECEITA,VOTOS FROM RECEITAS WHERE CODIGO = ".$codigo;
+   $linha=mysqli_fetch_array(mysqli_query($connect,$query));
 ?>
 <!doctype html>
 <html lang="en">
@@ -61,12 +61,13 @@
                 <div class="container">
 
                     <div class="row">
-                        <div>
-                            <img style="width:300px;    height:300px"src= <php? echo '"'.$linha[URLIMG].'"' ?>>
+                        <div>   
+                                                   
+                            <?php  echo  "<img style='width:300px;height:300px' src='".$linha['URLIMG']."'>" ?>
                         </div>
-                        <div style="margin-left: 2%">
-                            <h1><php? echo $linha['TITULO'] ?></php></h1>
-                            <p><php? echo $linha['RECEITA'] ?></p>
+                        <div style="margin-left: 2%"  style="border: solid">
+                            <?php  echo "<h1>".$linha['TITULO']."</h1>"?>
+                            <?php echo "<p>".$linha['RECEITA']."</p>" ?>
                         </div>
                         <br/>
                         <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 2% ">Voltar</button>

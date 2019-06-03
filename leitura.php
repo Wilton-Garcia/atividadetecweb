@@ -55,5 +55,12 @@
 
 
 
+
 ?>
 
+
+<h1><php? echo $linha['TITULO'] ?></php></h1>
+                            <p><php? echo $linha['RECEITA'] ?></p>
+<?php  echo  "<img style='width:300px;height:300px' src='".$linha[URLIMG]."'>?>"
+<?php  echo "<h1>".$linha['TITULO']."</h1>"?>
+<?php echo "<p>".$linha['RECEITA']."</p>" ?>
