@@ -63,12 +63,12 @@
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
+                        
                             <?php
                             if($total > 0) {
                                 // inicia o loop que vai mostrar todos os dados
                                 do {
-                                    echo '
+                                    echo '<div class="col-md-4">
                                     <div class="card mb-4 shadow-sm">
                                                     <img src="'.$linha['URLIMG'].'" width="100%" height="225">
                                                         <div class="card-body">
@@ -83,19 +83,18 @@
                                                                     </div>
                                                                     <!-- <small class="text-muted">9 mins</small>-->
                                                                 </div>
-                                                        </div>
-                                                    </div>';
+                                                            </div>
+                                    </div>
+                                </div>';
                                 // finaliza o loop que vai mostrar os dados
                                 }while($linha = mysqli_fetch_assoc($dados));
                             // fim do if 
                             }
                             ?>
-                   
-
-                    </div>
+                    <!--</div>-->
                 </div>
             </div>
-            </div>
+        </div>
 
         </main>
 
