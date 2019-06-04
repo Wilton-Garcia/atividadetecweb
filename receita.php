@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
+    <title>Receitas Cult</title>
 
    
     <!-- Bootstrap core CSS -->
@@ -51,8 +51,8 @@
                     <h1 class="jumbotron-heading">Receitas Cult</h1>
                     <p class="lead text-muted">Trabalho desenvolvido para a aual de Tec Web</p>
                     <p>
-                        <a href="#" class="btn btn-primary my-2">Receitas</a>
-                        <a href="#" class="btn btn-secondary my-2">Cadastrar Receita</a>
+                        <a href="index.php" class="btn btn-primary my-2">Receitas</a>
+                        <a href="cadastro.php" class="btn btn-secondary my-2">Cadastrar Receita</a>
                     </p>
                 </div>
             </section>

@@ -3,8 +3,8 @@
      $connect = mysqli_connect('localhost','root');
      /*Escolhe o banco de dados a ser conectado*/
      $db = mysqli_select_db($connect,'receitasweb');
-      /*Insere dados na tabela de receitas*/
-    $query = "SELECT CODIGO,TITULO,URLIMG,RECEITA,VOTOS FROM RECEITAS";
+    /*Insere dados na tabela de receitas*/
+    $query = "SELECT CODIGO,TITULO,URLIMG,RECEITA,VOTOS FROM RECEITAS ORDER BY VOTOS DESC";
     $dados = mysqli_query($connect,$query) or die(mysqli_error($connect));
     $linha = mysqli_fetch_assoc($dados);
     // calcula quantos dados retornaram
@@ -19,8 +19,26 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
+    <title>Receitas Cult</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        function votos(codigos) {
+   $.ajax({
+      url:'votos.php?codigo='+codigo,
+      complete: function (response) {
+         alert(response.responseText);
+      },
+      error: function () {
+          alert('Erro');
+      }
+  });  
 
+  return false;
+}
+  
+  
+
+    </script>
    
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -65,6 +83,7 @@
                     <div class="row">      
                             <?php
                             if($total > 0) {
+                                $codigo = $linha['CODIGO'];
                                 // inicia o loop que vai mostrar todos os dados
                                 do {
                                     echo '<div class="col-md-4">
@@ -77,8 +96,8 @@
                                                         <p>'.$linha['VOTOS'].' Vezes favoritada</p>
                                                             <div class="d-flex justify-content-between align-items-center">
                                                                 <div class="btn-group">
-                                                                    <button type="button" class="btn btn-sm btn-outline-secondary alig">Favoritar Receitas</button>
-                                                                    <form method="get" action="receita.php">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary alig"  onclick="votos('.$codigo.')">Favoritar Receitas</button>
+                                                                <form method="get" action="receita.php">
                                                                     <button name="codigo" id="codigo" type="submit" class="btn btn-sm btn-outline-secondary alig" value="'.$linha['CODIGO'].' ">Abrir Receitas</button>
                                                                 </form>
                                                                 </div>
