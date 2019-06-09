@@ -20,24 +20,33 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Receitas Cult</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    
     <script>
-        function votos(codigos) {
-   $.ajax({
-      url:'votos.php?codigo='+codigo,
-      complete: function (response) {
-         alert(response.responseText);
-      },
-      error: function () {
-          alert('Erro');
-      }
-  });  
+           function votos(codigo) {
+            $.ajax({
+                url:'votos.php?codigo='+codigo,
+                cache: false,
+                complete: function(response){
+                    $(".row").load("index.php");
+                  
+                }
+                e.preventDefault();
+            });
+        }
+   
 
-  return false;
-}
-  
-  
-
+ 
+    $(document).ready(function(){
+            $(document).on('click','.btVoto',function()
+            {   
+                var id = $(this).attr("data-id");
+                votos(id);
+                
+            }
+            );	
+      });
+      
     </script>
    
     <!-- Bootstrap core CSS -->
@@ -68,7 +77,7 @@
         <main role="main">
 
             <section class="jumbotron text-center">
-                <div class="container">
+                <div class="container"  id="cont">
                     <h1 class="jumbotron-heading">Receitas Cult</h1>
                     <p class="lead text-muted">Trabalho desenvolvido para a aual de Tec Web</p>
                     <p>
@@ -79,9 +88,11 @@
             </section>
 
             <div class="album py-5 bg-light">
-                <div class="container">
+                <div class="container" id="cont">
                     <div class="row">      
                             <?php
+                            
+                           
                             if($total > 0) {
                                 $codigo = $linha['CODIGO'];
                                 // inicia o loop que vai mostrar todos os dados
@@ -96,9 +107,9 @@
                                                         <p>'.$linha['VOTOS'].' Vezes favoritada</p>
                                                             <div class="d-flex justify-content-between align-items-center">
                                                                 <div class="btn-group">
-                                                                    <button type="button" class="btn btn-sm btn-outline-secondary alig"  onclick="votos('.$codigo.')">Favoritar Receitas</button>
+                                                                    <button type="button" data-id="'.$linha["CODIGO"].'" class="btn btn-sm btn-outline-secondary alig btVoto">Favoritar Receitas</button>
                                                                 <form method="get" action="receita.php">
-                                                                    <button name="codigo" id="codigo" type="submit" class="btn btn-sm btn-outline-secondary alig" value="'.$linha['CODIGO'].' ">Abrir Receitas</button>
+                                                                    <button name="codigo" data-id="'.$linha["CODIGO"].'" type="submit" class="btn btn-sm btn-outline-secondary alig" value="'.$linha['CODIGO'].'">Abrir Receitas</button>
                                                                 </form>
                                                                 </div>
                                                                     <!-- <small class="text-muted">9 mins</small>-->
@@ -110,6 +121,7 @@
                                 }while($linha = mysqli_fetch_assoc($dados));
                             // fim do if 
                             }
+                       
                         ?>
                 </div>
             </div>
@@ -124,9 +136,9 @@
                 </p>
             </div>
         </footer>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>
-            window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+            window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.min.js"><\/script>')
         </script>
 </body>
 </html>
